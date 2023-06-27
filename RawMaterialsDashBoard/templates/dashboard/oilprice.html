@@ -1,0 +1,83 @@
+{% load static %}
+
+<head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
+</head>
+
+{% block content %}
+  <div class="container">
+    <h2>Oil Prices Dashboard</h2>
+    <form method="GET" class="form-inline mb-3">
+      <div class="form-group mr-2">
+        <label for="start-date">Start Date:</label>
+        <input type="date" name="start_day" class="form-control mx-2" value="{{ start_day }}">
+      </div>
+      <div class="form-group mr-2">
+        <label for="end-date">End Date:</label>
+        <input type="date" name="end_day" class="form-control mx-2" value="{{ end_day }}">
+      </div>
+      <br>
+      <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+    
+    <div class="row">
+      <div class="col-md-18">
+        <div class="card">
+          <div class="card-header">Compared Oils Prices Graph (Wti & Brent)</div>
+          <div class="card-body">
+            {% if normalization_graph %}
+              <div class="text-center mb-3">
+                <img src="data:image/png;base64,{{ normalization_graph }}" class="img-fluid" alt="Normalization Graph">
+              </div>
+            {% else %}
+              <div class="alert alert-warning">No data available.</div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-18">
+        <div class="card">
+          <div class="card-header">WTI Price</div>
+          <div class="card-body">
+            {% if wti_price_graph %}
+              <div class="text-center mb-3">
+                <img src="data:image/png;base64,{{ wti_price_graph }}" class="img-fluid" alt="WTI Price Graph">
+              </div>
+            {% else %}
+              <div class="alert alert-warning">No data available.</div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <BR>
+
+    <div class="row">
+      <div class="col-md-18">
+        <div class="card">
+          <div class="card-header">Brent Price</div>
+          <div class="card-body">
+            {% if brent_price_graph %}
+              <div class="text-center mb-3">
+                <img src="data:image/png;base64,{{ brent_price_graph }}" class="img-fluid" alt="Brent Price Graph">
+              </div>
+            {% else %}
+              <div class="alert alert-warning">No data available.</div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"
+     integrity="sha384-0KNlG+I5cZ5o5NY5A5D5pt5mGdHQm2jGW1rmxouEanvnskhBnx90CZ/ihPwpLYgQ"
+     crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  
+{% endblock %}
