@@ -1,10 +1,9 @@
-import os
 import redshift_connector
 from config.environ import Environ
 
 class RedshiftSession:
     @classmethod
-    def redshift_conn(cls):
+    def redshift_connection(cls):
         conn = redshift_connector.connect(
             host=Environ.REDSHIFT_HOST,
             database=Environ.REDSHIFT_DATABASE,

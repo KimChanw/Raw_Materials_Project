@@ -1,9 +1,6 @@
-from datetime import datetime, timedelta
-
 from django.shortcuts import render
 from .data_visualization import _visualize_all_data, _visualize_price_data_only_one_column
 from .data_preprocess.get_data_for_visualization import get_date_series_dataframe, get_date_series_join_dataframe
-from datetime import datetime, timedelta
 
 import matplotlib as mpl
 
@@ -64,9 +61,9 @@ def gold_silver_prices(request):
 
     # 해당 일자의 데이터가 있는지 확인
     try:
-        gold_price_df = get_date_series_dataframe(start_date, end_date, 'gold_prices')
-        silver_price_df = get_date_series_dataframe(start_date, end_date, 'silver_prices')
-        gold_silver_price_df = get_date_series_join_dataframe(start_date, end_date, 'gold_prices', 'silver_prices')
+        gold_price_df = get_date_series_dataframe(start_date, end_date, 'GoldPriceTable')
+        silver_price_df = get_date_series_dataframe(start_date, end_date, 'SilverPriceTable')
+        gold_silver_price_df = get_date_series_join_dataframe(start_date, end_date, 'GoldPriceTable', 'SilverPriceTable')
 
     # 없다면 ValueError를 발생시켜 예외 처리
     # 프론트 단에서 오류 메시지 출력할 수 있도록 error_message 추가
